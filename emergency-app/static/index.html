@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Response System API</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h2>Pulse<span>Grid</span></h2>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-target="ambulance-view">Ambulance Portal</li>
+                <li data-target="hospital-view">Hospital Dashboard</li>
+                <li data-target="police-view">Traffic Control</li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+            <!-- AMBULANCE VIEW -->
+            <section id="ambulance-view" class="dashboard-view active">
+                <header class="section-header">
+                    <h1>Ambulance Dispatch Portal</h1>
+                    <p>Initiate emergency response and broadcast telemetry.</p>
+                </header>
+                <div class="dashboard-grid">
+                    <div class="panel controls-panel glass">
+                        <h3>Start Emergency Trip</h3>
+                        <div class="form-group">
+                            <label>Destination Hospital</label>
+                            <select id="hospital-select" class="premium-input">
+                                <option value="h1">City General Hospital</option>
+                                <option value="h2">Mercy Medical Center</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Patient Severity</label>
+                            <select id="severity-select" class="premium-input">
+                                <option value="critical" style="color: #ef4444;">Critical (Code Red)</option>
+                                <option value="urgent" style="color: #f59e0b;">Urgent</option>
+                            </select>
+                        </div>
+                        <button id="start-trip-btn" class="primary-btn red-glow">Initiate Emergency Sequence</button>
+                        <div class="status-indicator">
+                            <span class="dot" id="ambulance-status-dot"></span>
+                            <span id="ambulance-status-text">Standby</span>
+                        </div>
+                    </div>
+                    <div class="panel map-panel glass">
+                        <div id="ambulance-map" class="map-container"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HOSPITAL VIEW -->
+            <section id="hospital-view" class="dashboard-view">
+                <header class="section-header">
+                    <h1>Emergency Room Dashboard</h1>
+                    <p>Monitor incoming traumatic arrivals in real-time.</p>
+                </header>
+                <div class="dashboard-grid">
+                    <div class="panel glass">
+                        <h3>Incoming Ambulances</h3>
+                        <div id="hospital-arrivals-list" class="arrivals-list">
+                            <!-- Populated by JS -->
+                            <div class="empty-state">No active incoming emergencies</div>
+                        </div>
+                    </div>
+                    <div class="panel map-panel glass">
+                        <div id="hospital-map" class="map-container"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- POLICE VIEW -->
+            <section id="police-view" class="dashboard-view">
+                <header class="section-header">
+                    <h1>Traffic Control Command Center</h1>
+                    <p>Clear traffic routes for approaching emergency vehicles.</p>
+                </header>
+                <div class="dashboard-grid">
+                    <div class="panel glass">
+                        <h3>Jurisdiction Alerts (Junction 5)</h3>
+                        <div id="police-alerts-list" class="alerts-list">
+                            <!-- Populated by JS -->
+                            <div class="empty-state">Traffic normal. No emergency vehicles in sector.</div>
+                        </div>
+                    </div>
+                    <div class="panel map-panel glass">
+                        <div id="police-map" class="map-container"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="app.js"></script>
+</body>
+</html>
